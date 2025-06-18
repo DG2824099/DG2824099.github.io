@@ -5,7 +5,7 @@ const statusText = document.getElementById('status');
 const avatarContainer = document.getElementById('avatar-container');
 
 // URL da API
-const API_URL = "https://api.vlibras.gov.br/translate?text=";
+const API_URL = "https://corsproxy.io/?https%3A%2F%2Fapi.vlibras.gov.br%2Ftranslate%3Ftext%3D";
 
 // Função para buscar e exibir o vídeo
 async function fetchLibrasVideo(text) {
