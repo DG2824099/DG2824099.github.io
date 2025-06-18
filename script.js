@@ -16,7 +16,7 @@ async function fetchLibrasVideo(text) {
         statusText.textContent = `Carregando tradução...`;
 
         // A URL agora é fixa, sem o texto nela
-        const API_ENDPOINT = 'https://corsproxy.io/?https%3A%2F%2Fapi.vlibras.gov.br%2Ftranslate';
+        const API_ENDPOINT = 'https://api.allorigins.win/raw?url=https://api.vlibras.gov.br/translate';
 
         // Faz a chamada para a API usando o método POST
         const response = await fetch(API_ENDPOINT, {
