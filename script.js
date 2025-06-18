@@ -13,22 +13,32 @@ async function fetchLibrasVideo(text) {
         // Mostra uma mensagem de carregamento
         statusText.style.display = 'block';
         videoPlayer.style.display = 'none';
-        statusText.textContent = `Carregando tradução para "${text}"...`;
+        statusText.textContent = `Carregando tradução...`;
 
-        // Faz a chamada para a API
-        const response = await fetch(API_URL + encodeURIComponent(text));
-        
+        // A URL agora é fixa, sem o texto nela
+        const API_ENDPOINT = 'https://corsproxy.io/?https%3A%2F%2Fapi.vlibras.gov.br%2Ftranslate';
+
+        // Faz a chamada para a API usando o método POST
+        const response = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text }) // Envia o texto no corpo da requisição
+        });
+
         if (!response.ok) {
-            throw new Error('Falha ao buscar tradução.');
+            // Agora podemos ver o status exato do erro!
+            throw new Error(`Falha na tradução. Status: ${response.status}`);
         }
 
         const data = await response.json();
         const videoUrl = data.links[0].href;
-        
+
         // Esconde o texto de status e mostra o player de vídeo
         statusText.style.display = 'none';
         videoPlayer.style.display = 'block';
-        
+
         // Define a URL do vídeo no player e inicia a reprodução
         videoPlayer.src = videoUrl;
         videoPlayer.play();
