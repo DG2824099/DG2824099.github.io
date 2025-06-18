@@ -1,6 +1,6 @@
 body {
     /* Novo link para uma imagem de fundo funcional */
-    background-image: url('https://images.pexels.com/photos/1528640/pexels-photo-1528640.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image:  url('fundo-mata.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
