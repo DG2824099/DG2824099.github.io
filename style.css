@@ -1,9 +1,7 @@
 body {
-    /* Novo link para uma imagem de fundo funcional */
-    background-image:  url('fundo-mata.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    /* REMOVIDA a imagem de fundo. SUBSTITUÍDA por um gradiente verde à prova de falhas. */
+    background-image: linear-gradient(to top, #376245, #4e8d67, #66b98a);
+    background-attachment: fixed; /* Deixa o fundo fixo durante a rolagem */
     font-family: sans-serif;
     margin: 0;
     padding: 20px;
@@ -13,18 +11,19 @@ body {
     min-height: 100vh;
 }
 
-/* O "quadro" que ocupa mais de 50% da tela e destaca o conteúdo */
+/* O "quadro" agora com um fundo verde bem claro, mais ecológico */
 .main-container {
-    background-color: rgba(255, 255, 255, 0.95); /* Fundo branco com 95% de opacidade */
+    background-color: #f0fdf4; /* Tom de verde muito claro, quase branco */
     padding: 30px 40px;
     border-radius: 15px;
     text-align: center;
-    min-width: 60vw; /* Ocupa no mínimo 60% da largura da tela */
+    min-width: 60vw;
     max-width: 900px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25); /* Sombra para dar profundidade */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
     border: 1px solid #ccc;
 }
 
+/* O resto do CSS permanece o mesmo... */
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -61,15 +60,14 @@ header {
     color: white;
 }
 
-/* Container do vídeo agora usa flexbox para alinhar melhor */
 #avatar-container {
-    min-height: 300px; /* Altura mínima para não "pular" a tela */
+    min-height: 300px;
     border: 2px dashed #86efac;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0fff0;
+    background-color: #e6f5e9;
     margin: 0 auto;
     padding: 10px;
 }
