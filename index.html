@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
     <header>
         <h1>Trilha Ecológica Acessível em LIBRAS</h1>
         <p>Clique em um ponto da trilha para ver a tradução em LIBRAS.</p>
@@ -14,17 +21,18 @@
 
     <main>
         <div class="botoes-container">
-            <button class="ponto-trilha" data-text="Você está vendo essa árvore imponente com o tronco claro e reto? É o famoso Guapuruvu, uma verdadeira joia da nossa Mata Atlântica! E você sabia que ela é uma das árvores que crescem mais rápido no mundo, atingindo uma altura impressionante em pouquíssimos anos? Imagine só na primavera: a árvore se cobre inteira com cachos de flores amarelas vibrantes, um espetáculo da natureza! Mas qual o seu papel mais importante aqui na floresta? Sendo uma espécie pioneira, o Guapuruvu é o grande herói que recupera o solo e cria as condições perfeitas para todo o resto da mata renascer!">1. Guapuruvu</button>
-            <button class="ponto-trilha" data-text="solo atlântico">2. Solo Atlântico</button>
-            <button class="ponto-trilha" data-text="palmeira juçara">3. Palmeira Juçara</button>
-        </div>
-
-        <div id="avatar-container">
-            <p id="status">Selecione um item acima</p>
-            <video id="libras-video" width="400" controls autoplay muted></video>
+            <button class="ponto-trilha" onclick="traduzir('Guapuruvu')">1. Guapuruvu</button>
+            <button class="ponto-trilha" onclick="traduzir('Solo Atlântico')">2. Solo Atlântico</button>
+            <button class="ponto-trilha" onclick="traduzir('Palmeira Juçara')">3. Palmeira Juçara</button>
+            <button class="ponto-trilha" onclick="traduzir('Você está vendo essa árvore imponente com o tronco claro e reto? É o famoso Guapuruvu, uma verdadeira joia da nossa Mata Atlântica! E você sabia que ela é uma das árvores que crescem mais rápido no mundo, atingindo uma altura impressionante em pouquíssimos anos? Imagine só na primavera: a árvore se cobre inteira com cachos de flores amarelas vibrantes, um espetáculo da natureza! Mas qual o seu papel mais importante aqui na floresta? Sendo uma espécie pioneira, o Guapuruvu é o grande herói que recupera o solo e cria as condições perfeitas para todo o resto da mata renascer!')">4. Texto Longo Guapuruvu</button>
         </div>
     </main>
 
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
     <script src="script.js"></script>
 </body>
+</html>
 </html>
