@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo LIBRAS Trilha Ecológica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Trilha Ecológica Acessível em LIBRAS</h1>
+        <p>Clique em um ponto da trilha para ver a tradução em LIBRAS.</p>
+    </header>
+
+    <main>
+        <div class="botoes-container">
+            <button class="ponto-trilha" data-text="guapuruvu">1. Guapuruvu</button>
+            <button class="ponto-trilha" data-text="solo atlântico">2. Solo Atlântico</button>
+            <button class="ponto-trilha" data-text="palmeira juçara">3. Palmeira Juçara</button>
+        </div>
+
+        <div id="avatar-container">
+            <p id="status">Selecione um item acima</p>
+            <video id="libras-video" width="400" controls autoplay muted></video>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
