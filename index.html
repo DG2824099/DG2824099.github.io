@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo LIBRAS Trilha Ecológica</title>
+    <title>Protótipo Trilha Ecológica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-
     <div class="main-container">
         <header>
             <h1>Trilha Ecológica Acessível em LIBRAS</h1>
@@ -21,21 +14,13 @@
         </header>
         <main>
             <div class="botoes-container">
-                <button class="ponto-trilha" 
-                        data-text="Guapuruvu" 
-                        data-fallback-video="videos/guapuruvu.mp4">
-                    1. Guapuruvu <i>(Schizolobium parahyba)</i>
-                </button>
-                <button class="ponto-trilha" 
-                        data-text="Solo da Mata Atlântica" 
-                        data-fallback-video="videos/solo.mp4">
-                    2. Solo da Mata Atlântica
-                </button>
+                <button class="ponto-trilha" onclick="tocarVideo('videos/guapuruvu.mp4')">1. Guapuruvu <i>(Schizolobium parahyba)</i></button>
+                <button class="ponto-trilha" onclick="tocarVideo('videos/solo.mp4')">2. Solo da Mata Atlântica</button>
             </div>
 
             <div id="avatar-container">
-                <video id="libras-video" width="400" controls autoplay muted></video>
-                <p id="fallback-message" style="display:none; color:#555;">Tradutor online indisponível. Exibindo versão gravada.</p>
+                <p id="video-placeholder">Selecione uma opção acima para exibir o vídeo.</p>
+                <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
             </div>
 
             <div class="readme-container">
@@ -43,11 +28,6 @@
             </div>
         </main>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@main/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
