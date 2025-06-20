@@ -4,125 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protótipo Trilha Ecológica Acessível com VLibras</title>
-    <!-- Carregando o Google Fonts. A fonte foi alterada para sans-serif no novo CSS. -->
+    
+    <!-- Carregando o Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* CSS Personalizado fornecido pelo usuário */
-        body {
-            /* REMOVIDA a imagem de fundo. SUBSTITUÍDA por um gradiente verde à prova de falhas. */
-            background-image: linear-gradient(to top, #376245, #4e8d67, #66b98a);
-            background-attachment: fixed; /* Deixa o fundo fixo durante a rolagem */
-            font-family: sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* O "quadro" agora com um fundo verde bem claro, mais ecológico */
-        .main-container {
-            background-color: #f0fdf4; /* Tom de verde muito claro, quase branco */
-            padding: 30px 40px;
-            border-radius: 15px;
-            text-align: center;
-            min-width: 60vw;
-            max-width: 900px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-            border: 1px solid #ccc;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #14532d;
-        }
-        
-        /* Ajustes para o Título e Subtítulo */
-        header h1 {
-            font-size: 2.2em;
-            font-weight: bold;
-        }
-
-        header p {
-            font-size: 1.1em;
-            color: #374151; /* Cor de texto mais suave */
-        }
-
-
-        .botoes-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-
-        .ponto-trilha {
-            padding: 20px 35px;
-            font-size: 1.1em;
-            cursor: pointer;
-            background-color: white;
-            color: #166534;
-            border-radius: 8px;
-            transition: all 0.2s;
-            border: 2px solid black;
-            width: 90%;
-            max-width: 500px;
-            text-align: left; /* Alinhamento do texto à esquerda dentro do botão */
-        }
-
-        .ponto-trilha i {
-            font-weight: normal;
-            font-style: italic; /* Garante que o nome científico fique em itálico */
-        }
-
-        .ponto-trilha:hover {
-            background-color: #22c55e;
-            color: white;
-        }
-
-        #avatar-container {
-            min-height: 300px;
-            border: 2px dashed #86efac;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e6f5e9;
-            margin: 0 auto;
-            padding: 10px;
-        }
-
-        .readme-container {
-            margin-top: 40px;
-        }
-
-        .readme-button {
-            text-decoration: none;
-            background-color: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.2s;
-            font-size: 1em;
-            display: inline-block;
-        }
-
-        .readme-button:hover {
-            background-color: #5a6268;
-        }
-
-        footer {
-            margin-top: 40px;
-            color: #4b5563;
-        }
-
-    </style>
+    <!-- Link para a sua folha de estilos CSS externa -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -133,14 +22,14 @@
         </header>
 
         <main>
-            <!-- Container de Mensagem de Erro (não é mais estilizado por Tailwind) -->
-            <div id="error-message" style="display: none; background-color: #fee2e2; border: 1px solid #f87171; color: #b91c1c; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;" role="alert">
+            <!-- Container para mensagens de erro -->
+            <div id="error-message" class="error-container">
               <strong>Erro!</strong>
               <span>Não foi possível carregar o tradutor de LIBRAS. Por favor, tente recarregar a página.</span>
             </div>
             
             <div class="botoes-container">
-                
+                <!-- Botões com o texto para tradução no atributo 'data-text' -->
                 <button class="ponto-trilha" 
                         data-text="O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.">
                     <span><b>1. Guapuruvu</b></span>
@@ -152,9 +41,9 @@
                     <span><b>2. Solo da Mata Atlântica</b></span>
                     <i>Características e importância</i>
                 </button>
-
             </div>
 
+            <!-- Container onde o avatar do VLibras será exibido -->
             <div id="avatar-container">
                 <p id="avatar-placeholder">Carregando tradutor de LIBRAS...<br>Por favor, aguarde.</p>
             </div>
@@ -171,63 +60,10 @@
         </footer>
     </div>
     
+    <!-- Link para o script do VLibras -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-        // CORREÇÃO FINAL: Espera a página inteira carregar, depois verifica ativamente
-        // se o plugin VLibras está pronto antes de tentar usá-lo.
-        window.addEventListener('load', () => {
-
-            const MAX_ATTEMPTS = 20; // Tenta por até 10 segundos
-            let attempts = 0;
-
-            const initializeApp = () => {
-                // Verifica se o objeto global do VLibras (VLibras) já existe
-                if (window.VLibras) {
-                    console.log("Plugin VLibras detectado. Inicializando o widget.");
-                    new window.VLibras.Widget({ root: '#avatar-container' });
-                    setupButtonListeners();
-                } else if (attempts < MAX_ATTEMPTS) {
-                    // Se não existe, espera 500ms e tenta de novo
-                    attempts++;
-                    console.log(`Aguardando o plugin VLibras... Tentativa ${attempts}`);
-                    setTimeout(initializeApp, 500);
-                } else {
-                    // Se esgotaram as tentativas, mostra o erro
-                    console.error("Não foi possível inicializar o plugin VLibras. O carregamento excedeu o tempo limite.");
-                    const errorMessage = document.getElementById('error-message');
-                    if (errorMessage) errorMessage.style.display = 'block';
-                }
-            };
-
-            const setupButtonListeners = () => {
-                const placeholder = document.getElementById('avatar-placeholder');
-                const errorMessage = document.getElementById('error-message');
-                const buttons = document.querySelectorAll('.ponto-trilha');
-
-                const handleTranslationClick = (event) => {
-                    if (placeholder) placeholder.style.display = 'none';
-                    
-                    const textToTranslate = event.currentTarget.dataset.text;
-                    
-                    // A verificação final garante que o objeto do widget (vw) está pronto
-                    if (window.vw && window.vw.widget) {
-                        if (errorMessage) errorMessage.style.display = 'none';
-                        window.vw.widget.translate(textToTranslate);
-                    } else {
-                        console.error("O objeto do widget VLibras (vw) não foi encontrado no momento do clique.");
-                        if(errorMessage) errorMessage.style.display = 'block';
-                    }
-                };
-
-                buttons.forEach(button => {
-                    button.addEventListener('click', handleTranslationClick);
-                });
-            };
-
-            // Inicia todo o processo
-            initializeApp();
-        });
-    </script>
-
+    <!-- Link para o seu arquivo JavaScript externo. O 'defer' garante que ele só execute depois do HTML carregar. -->
+    <script src="script.js" defer></script>
 </body>
 </html>
+1
