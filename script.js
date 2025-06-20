@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Codifica o texto para que ele possa ser usado em uma URL
             const encodedText = encodeURIComponent(textToTranslate);
             
-            // Monta a URL completa do Player Web do VLibras
-            const vlibrasPlayerUrl = `https://www.vlibras.gov.br/player.html?video=${encodedText}`;
+            // CORREÇÃO: O parâmetro correto para o player do VLibras é 'text', e não 'video'.
+            const vlibrasPlayerUrl = `https://www.vlibras.gov.br/player.html?text=${encodedText}`;
             
             // Abre a URL em uma nova aba do navegador
             const newWindow = window.open(vlibrasPlayerUrl, '_blank');
