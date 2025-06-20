@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protótipo Trilha Ecológica Acessível com VLibras</title>
-    <!-- Carregando o Tailwind CSS para um design moderno e responsivo -->
+    <!-- Carregando o Tailwind CSS. A mensagem no console sobre produção é um aviso padrão e não afeta o protótipo. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Carregando o Google Fonts para uma melhor tipografia -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Script do Plugin VLibras -->
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 
     <style>
         /* Estilos personalizados */
@@ -50,16 +47,16 @@
             <!-- Container dos botões dos pontos da trilha -->
             <div class="botoes-container mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                 
-                <!-- Botão 1: Clique para traduzir o texto sobre o Guapuruvu -->
-                <button class="ponto-trilha w-full bg-white p-4 rounded-lg shadow-md border border-gray-200 text-left" 
-                        onclick="traduzirTexto('INSIRA AQUI O TEXTO SOBRE O GUAPURUVU. Exemplo: O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.')">
+                <!-- Botão 1: O texto para tradução agora está em um atributo 'data-text' -->
+                <button id="btn-guapuruvu" class="ponto-trilha w-full bg-white p-4 rounded-lg shadow-md border border-gray-200 text-left" 
+                        data-text="O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.">
                     <span class="font-bold text-green-700">1. Guapuruvu</span>
                     <i class="text-gray-500 block text-sm">(Schizolobium parahyba)</i>
                 </button>
                 
-                <!-- Botão 2: Clique para traduzir o texto sobre o Solo -->
-                <button class="ponto-trilha w-full bg-white p-4 rounded-lg shadow-md border border-gray-200 text-left" 
-                        onclick="traduzirTexto('INSIRA AQUI O TEXTO SOBRE O SOLO. Exemplo: O solo da Mata Atlântica é geralmente profundo, argiloso e rico em matéria orgânica. Essa camada de folhas em decomposição, chamada de serrapilheira, é fundamental para a fertilidade.')">
+                <!-- Botão 2: O texto para tradução agora está em um atributo 'data-text' -->
+                <button id="btn-solo" class="ponto-trilha w-full bg-white p-4 rounded-lg shadow-md border border-gray-200 text-left" 
+                        data-text="O solo da Mata Atlântica é geralmente profundo, argiloso e rico em matéria orgânica. Essa camada de folhas em decomposição, chamada de serrapilheira, é fundamental para a fertilidade.">
                     <span class="font-bold text-green-700">2. Solo da Mata Atlântica</span>
                     <i class="text-gray-500 block text-sm">Características e importância</i>
                 </button>
@@ -84,33 +81,45 @@
             <p class="text-sm text-gray-500">&copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>
         </footer>
     </div>
-
+    
+    <!-- CORREÇÃO: Os scripts foram movidos para o final do body -->
+    <!-- Isso garante que o HTML seja totalmente carregado antes dos scripts serem executados, evitando erros. -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        // Inicializa o widget do VLibras assim que o script é carregado
-        new window.VLibras.Widget({
-            // Aponta para a div onde o avatar deve aparecer, substituindo o player de vídeo
-            root: '#avatar-container', 
-        });
+        // CORREÇÃO: O código agora espera o evento 'DOMContentLoaded', que sinaliza
+        // que a página está pronta para ser manipulada.
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // Função para enviar um texto para ser traduzido e sinalizado pelo avatar do VLibras
-        function traduzirTexto(texto) {
+            // Inicializa o widget do VLibras de forma segura
+            new window.VLibras.Widget({
+                root: '#avatar-container',
+            });
+
             const placeholder = document.getElementById('avatar-placeholder');
-            
-            // Esconde a mensagem "Carregando..." se ela ainda estiver visível
-            if(placeholder) {
-                placeholder.style.display = 'none';
-            }
+            const btnGuapuruvu = document.getElementById('btn-guapuruvu');
+            const btnSolo = document.getElementById('btn-solo');
 
-            // Verifica se o widget do VLibras está carregado e disponível na página
-            if (window.vw && window.vw.widget) {
-                console.log('Traduzindo texto:', texto);
-                window.vw.widget.translate(texto);
-            } else {
-                console.error("Widget do VLibras não foi encontrado. Verifique a inicialização.");
-                // Use um modal customizado em um projeto real em vez de alert()
-                alert("Não foi possível carregar o tradutor de LIBRAS. Tente recarregar a página.");
-            }
-        }
+            const handleTranslationClick = (event) => {
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+                // Pega o texto diretamente do atributo 'data-text' do botão clicado
+                const textToTranslate = event.currentTarget.dataset.text;
+                
+                if (window.vw && window.vw.widget) {
+                    console.log('Traduzindo texto:', textToTranslate);
+                    window.vw.widget.translate(textToTranslate);
+                } else {
+                    console.error("Widget do VLibras não foi encontrado. Verifique a inicialização.");
+                    alert("Não foi possível carregar o tradutor de LIBRAS. Tente recarregar a página.");
+                }
+            };
+
+            // CORREÇÃO: Eventos de clique são adicionados via JavaScript, uma prática mais moderna
+            // que substitui o 'onclick' diretamente no HTML.
+            if(btnGuapuruvu) btnGuapuruvu.addEventListener('click', handleTranslationClick);
+            if(btnSolo) btnSolo.addEventListener('click', handleTranslationClick);
+        });
     </script>
 
 </body>
