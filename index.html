@@ -44,6 +44,12 @@
         </header>
 
         <main class="w-full">
+            <!-- Container de Mensagem de Erro (inicialmente oculto) -->
+            <div id="error-message" class="hidden w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative mb-4" role="alert">
+              <strong class="font-bold">Erro!</strong>
+              <span class="block sm:inline">Não foi possível carregar o tradutor de LIBRAS. Por favor, tente recarregar a página.</span>
+            </div>
+            
             <!-- Container dos botões dos pontos da trilha -->
             <div class="botoes-container mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                 
@@ -86,39 +92,48 @@
     <!-- Isso garante que o HTML seja totalmente carregado antes dos scripts serem executados, evitando erros. -->
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        // CORREÇÃO: O código agora espera o evento 'DOMContentLoaded', que sinaliza
-        // que a página está pronta para ser manipulada.
-        document.addEventListener('DOMContentLoaded', () => {
+        // CORREÇÃO: O código agora espera o evento 'load' da janela.
+        // Isso garante que todos os recursos, incluindo o script do VLibras,
+        // estejam completamente carregados antes da execução.
+        window.addEventListener('load', () => {
 
-            // Inicializa o widget do VLibras de forma segura
-            new window.VLibras.Widget({
-                root: '#avatar-container',
-            });
+            // Verificação de segurança: só inicializa se o plugin foi carregado
+            if (window.VLibras) {
+                new window.VLibras.Widget({
+                    root: '#avatar-container',
+                });
+            } else {
+                // Se o plugin não carregou, exibe a mensagem de erro
+                const errorMessage = document.getElementById('error-message');
+                if (errorMessage) errorMessage.classList.remove('hidden');
+            }
 
             const placeholder = document.getElementById('avatar-placeholder');
-            const btnGuapuruvu = document.getElementById('btn-guapuruvu');
-            const btnSolo = document.getElementById('btn-solo');
+            const errorMessage = document.getElementById('error-message');
+            const buttons = document.querySelectorAll('.ponto-trilha');
 
             const handleTranslationClick = (event) => {
                 if (placeholder) {
                     placeholder.style.display = 'none';
                 }
-                // Pega o texto diretamente do atributo 'data-text' do botão clicado
+                
                 const textToTranslate = event.currentTarget.dataset.text;
                 
+                // A verificação é mantida por segurança
                 if (window.vw && window.vw.widget) {
                     console.log('Traduzindo texto:', textToTranslate);
+                    errorMessage.classList.add('hidden'); // Garante que a mensagem de erro está oculta
                     window.vw.widget.translate(textToTranslate);
                 } else {
                     console.error("Widget do VLibras não foi encontrado. Verifique a inicialização.");
-                    alert("Não foi possível carregar o tradutor de LIBRAS. Tente recarregar a página.");
+                    if(errorMessage) errorMessage.classList.remove('hidden'); // Exibe a mensagem de erro
                 }
             };
 
-            // CORREÇÃO: Eventos de clique são adicionados via JavaScript, uma prática mais moderna
-            // que substitui o 'onclick' diretamente no HTML.
-            if(btnGuapuruvu) btnGuapuruvu.addEventListener('click', handleTranslationClick);
-            if(btnSolo) btnSolo.addEventListener('click', handleTranslationClick);
+            // Adiciona o evento de clique a todos os botões da trilha
+            buttons.forEach(button => {
+                button.addEventListener('click', handleTranslationClick);
+            });
         });
     </script>
 
