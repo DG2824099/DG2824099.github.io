@@ -3,34 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo Trilha Ecológica</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Protótipo Trilha Ecológica Acessível com VLibras</title>
+    <!-- Carregando o Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregando o Google Fonts para uma melhor tipografia -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Script do Plugin VLibras -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F1F5F2; /* Um tom de verde bem claro para o fundo */
+        }
+        .main-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+        .ponto-trilha, .readme-button {
+            transition: all 0.3s ease;
+        }
+        .ponto-trilha:hover, .readme-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        /* Garante que o container do avatar tenha um tamanho mínimo */
+        #avatar-container {
+            min-height: 450px;
+        }
+    </style>
 </head>
-<body>
-    <div class="main-container">
-        <header>
-            <h1>Trilha Ecológica Acessível em LIBRAS</h1>
-            <p>Material didático - Educação inclusiva e acessibilidade em trilhas ecológicas.</p>
+<body class="bg-green-50 text-gray-800">
+
+    <div class="main-container min-h-screen flex flex-col items-center">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-green-800">Trilha Ecológica Acessível em LIBRAS</h1>
+            <p class="text-md text-gray-600 mt-2">Material didático para educação inclusiva e acessibilidade em trilhas ecológicas.</p>
         </header>
-        <main>
-            <div class="botoes-container">
-                <button class="ponto-trilha" onclick="tocarVideo('videos/guapuruvu.mp4')">1. Guapuruvu <i>(Schizolobium parahyba)</i></button>
-                <button class="ponto-trilha" onclick="tocarVideo('videos/solo.mp4')">2. Solo da Mata Atlântica</button>
+
+        <main class="w-full">
+            <!-- Container dos botões dos pontos da trilha -->
+            <div class="botoes-container mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Botão 1: Clique para traduzir o texto sobre o Guapuruvu -->
+                <button class="ponto-trilha w-full bg-white p-4 rounded-lg shadow-md border border-gray-200 text-left" 
+                        onclick="traduzirTexto('INSIRA AQUI O TEXTO SOBRE O GUAPURUVU. Exemplo: O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.')">
+                    <span class="font-bold text-green-700">1. Guapuruvu</span>
+                    <i class="text-gray-500 block text-sm">(Schizolobium parahyba)</i>
+                </button>
+                
+                <!-- Botão 2: Clique para traduzir o texto sobre o Solo -->
+                <button class="ponto-trilha w-full bg-white p-4 rounded-lg shadow-md border border-gray-200 text-left" 
+                        onclick="traduzirTexto('INSIRA AQUI O TEXTO SOBRE O SOLO. Exemplo: O solo da Mata Atlântica é geralmente profundo, argiloso e rico em matéria orgânica. Essa camada de folhas em decomposição, chamada de serrapilheira, é fundamental para a fertilidade.')">
+                    <span class="font-bold text-green-700">2. Solo da Mata Atlântica</span>
+                    <i class="text-gray-500 block text-sm">Características e importância</i>
+                </button>
+
             </div>
 
-            <div id="avatar-container">
-                <p id="video-placeholder">Selecione uma opção acima para exibir o vídeo.</p>
-                <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
+            <!-- Container onde o avatar do VLibras será exibido -->
+            <div id="avatar-container" class="w-full bg-gray-200 rounded-lg shadow-xl overflow-hidden flex items-center justify-center p-4">
+                <!-- O avatar do VLibras será inserido aqui pelo script. -->
+                <p id="avatar-placeholder" class="text-gray-500 text-center">Carregando tradutor de LIBRAS...<br>Por favor, aguarde.</p>
             </div>
 
-            <div class="readme-container">
-                <a href="sobre-o-projeto.pdf" class="readme-button">Sobre o Projeto</a>
+            <!-- Container do botão "Sobre o Projeto" -->
+            <div class="readme-container mt-10 text-center">
+                <a href="sobre-o-projeto.pdf" target="_blank" class="readme-button inline-block bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-green-800">
+                    Sobre o Projeto
+                </a>
             </div>
         </main>
+
+        <footer class="text-center mt-12 mb-4">
+            <p class="text-sm text-gray-500">&copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>
+        </footer>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
-    <script src="script.js"></script>
+
+    <script>
+        // Inicializa o widget do VLibras assim que o script é carregado
+        new window.VLibras.Widget({
+            // Aponta para a div onde o avatar deve aparecer, substituindo o player de vídeo
+            root: '#avatar-container', 
+        });
+
+        // Função para enviar um texto para ser traduzido e sinalizado pelo avatar do VLibras
+        function traduzirTexto(texto) {
+            const placeholder = document.getElementById('avatar-placeholder');
+            
+            // Esconde a mensagem "Carregando..." se ela ainda estiver visível
+            if(placeholder) {
+                placeholder.style.display = 'none';
+            }
+
+            // Verifica se o widget do VLibras está carregado e disponível na página
+            if (window.vw && window.vw.widget) {
+                console.log('Traduzindo texto:', texto);
+                window.vw.widget.translate(texto);
+            } else {
+                console.error("Widget do VLibras não foi encontrado. Verifique a inicialização.");
+                // Use um modal customizado em um projeto real em vez de alert()
+                alert("Não foi possível carregar o tradutor de LIBRAS. Tente recarregar a página.");
+            }
+        }
+    </script>
+
 </body>
 </html>
