@@ -3,66 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo Trilha Ecológica Acessível com VLibras</title>
-    
-    <!-- Carregando o Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Link para a sua folha de estilos CSS externa -->
+    <title>Protótipo Trilha Ecológica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="main-container">
         <header>
             <h1>Trilha Ecológica Acessível em LIBRAS</h1>
             <p>Material didático para educação inclusiva e acessibilidade em trilhas ecológicas.</p>
         </header>
-
         <main>
-            <!-- Container para mensagens de erro -->
-            <div id="error-message" class="error-container">
-              <strong>Erro!</strong>
-              <span>Não foi possível carregar o tradutor de LIBRAS. Por favor, tente recarregar a página.</span>
-            </div>
-            
             <div class="botoes-container">
-                <!-- Botões com o texto para tradução no atributo 'data-text' -->
                 <button class="ponto-trilha" 
                         data-text="O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.">
-                    <span><b>1. Guapuruvu</b></span>
-                    <i>(Schizolobium parahyba)</i>
+                    1. Guapuruvu <i>(Schizolobium parahyba)</i>
                 </button>
-                
-                <button class="ponto-trilha" 
+                <button class="ponto-trilha"
                         data-text="O solo da Mata Atlântica é geralmente profundo, argiloso e rico em matéria orgânica. Essa camada de folhas em decomposição, chamada de serrapilheira, é fundamental para a fertilidade.">
-                    <span><b>2. Solo da Mata Atlântica</b></span>
-                    <i>Características e importância</i>
+                    2. Solo da Mata Atlântica
                 </button>
             </div>
 
-            <!-- Container onde o avatar do VLibras será exibido -->
-            <div id="avatar-container">
-                <p id="avatar-placeholder">Carregando tradutor de LIBRAS...<br>Por favor, aguarde.</p>
+            <div id="info-container">
+                <p>Clique em um item acima. A tradução em LIBRAS abrirá em uma nova aba.</p>
             </div>
 
             <div class="readme-container">
-                <a href="sobre-o-projeto.pdf" target="_blank" class="readme-button">
-                    Sobre o Projeto
-                </a>
+                <a href="sobre-o-projeto.pdf" target="_blank" class="readme-button">Sobre o Projeto</a>
             </div>
         </main>
-
         <footer>
             <p>&copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>
         </footer>
     </div>
-    
-    <!-- Link para o script do VLibras -->
-    <!-- Link para o seu arquivo JavaScript externo. O 'defer' garante que ele só execute depois do HTML carregar. -->
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
-</html>
-1
