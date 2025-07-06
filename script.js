@@ -1,40 +1,50 @@
-// --- VERSÃO FINAL E LIMPA DO SCRIPT.JS ---
-
-// O evento 'DOMContentLoaded' espera todo o HTML ser carregado antes de executar o script.
+// Aguarda o DOM (a estrutura da página) ser completamente carregado
 document.addEventListener('DOMContentLoaded', () => {
-
-    // Seleciona todos os botões com a classe '.ponto-trilha'
-    const buttons = document.querySelectorAll('.ponto-trilha');
+    
+    // Seleciona os elementos da página
+    const botoes = document.querySelectorAll('.ponto-trilha');
+    const avatarPlaceholder = document.getElementById('avatar-placeholder');
+    const errorMessage = document.getElementById('error-message');
 
     // Função que será chamada quando um botão for clicado
-    const handleTranslationClick = (event) => {
-        // Pega o texto do atributo 'data-text' do botão que foi clicado
-        const textToTranslate = event.currentTarget.dataset.text;
+    function handleButtonClick(event) {
+        const botao = event.currentTarget;
+        const textoParaTraduzir = botao.dataset.text;
 
-        // Verifica se o texto existe antes de prosseguir
-        if (textToTranslate) {
-            // Codifica o texto para que ele possa ser usado em uma URL
-            const encodedText = encodeURIComponent(textToTranslate);
-            
-            // CORREÇÃO: O parâmetro correto para o player do VLibras é 'text', e não 'video'.
-            const vlibrasPlayerUrl = `https://www.vlibras.gov.br/player.html?text=${encodedText}`;
-            
-            // Abre a URL em uma nova aba do navegador
-            const newWindow = window.open(vlibrasPlayerUrl, '_blank');
-
-            // Adiciona uma verificação para o caso de o navegador bloquear o pop-up
-            if (!newWindow) {
-                alert("O seu navegador bloqueou a abertura da janela. Por favor, permita pop-ups para este site e tente novamente.");
-            }
-            
+        // Verifica se o widget do VLibras está disponível
+        if (window.VLibras && window.VLibras.widget) {
+            window.VLibras.widget.translate(textoParaTraduzir);
         } else {
-            // Loga um erro no console se o botão não tiver o atributo data-text
-            console.error("O botão clicado não possui texto no atributo 'data-text'.");
+            console.error('O widget do VLibras não está pronto ou falhou ao carregar.');
+            // Se o widget não funcionar, não faz nada (a mensagem de erro global já estará visível)
         }
-    };
+    }
 
-    // Adiciona o 'escutador' de clique a cada um dos botões encontrados na página
-    buttons.forEach(button => {
-        button.addEventListener('click', handleTranslationClick);
-    });
+    // Função para verificar se o Widget do VLibras carregou
+    function verificarWidgetVLibras() {
+        if (window.VLibras && window.VLibras.widget) {
+            // Sucesso! O widget carregou.
+            console.log('Widget do VLibras carregado com sucesso.');
+            if (avatarPlaceholder) {
+                avatarPlaceholder.textContent = 'Selecione um item acima para traduzir.';
+            }
+            // Adiciona o evento de clique a cada botão
+            botoes.forEach(botao => {
+                botao.addEventListener('click', handleButtonClick);
+            });
+        } else {
+            // Falha! Mostra a mensagem de erro e esconde o placeholder
+            console.error('Falha ao carregar o widget do VLibras.');
+            if (errorMessage) {
+                errorMessage.style.display = 'block';
+            }
+            if (avatarPlaceholder) {
+                avatarPlaceholder.style.display = 'none';
+            }
+        }
+    }
+
+    // Tenta verificar o widget após um pequeno atraso (2 segundos) para dar tempo de carregar
+    setTimeout(verificarWidgetVLibras, 2000);
+
 });
