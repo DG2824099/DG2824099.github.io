@@ -1,6 +1,9 @@
-/* --- ESTILOS GERAIS (para todas as páginas) --- */
+/* --- ESTILOS GERAIS --- */
 body {
-    background-image: linear-gradient(to top, #376245, #4e8d67, #66b98a);
+    /* Garante que o fundo seja aplicado em todas as páginas */
+    background-image: url('fundo-mata.png');
+    background-size: cover;
+    background-position: center;
     background-attachment: fixed;
     font-family: sans-serif;
     margin: 0;
@@ -17,7 +20,7 @@ body {
     border-radius: 15px;
     text-align: center;
     width: 90%;
-    max-width: 900px;
+    max-width: 1200px; /* Aumentado para acomodar o layout lado a lado */
     box-shadow: 0 5px 20px rgba(0,0,0,0.25);
     border: 1px solid #ccc;
 }
@@ -25,16 +28,6 @@ body {
 header {
     margin-bottom: 30px;
     color: #14532d;
-}
-
-header h1 {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-header p {
-    font-size: 1.1em;
-    color: #374151;
 }
 
 footer {
@@ -58,9 +51,8 @@ footer {
     max-width: 550px;
     text-align: left;
     text-decoration: none;
-    margin: 0 auto 15px auto; /* Centraliza os botões */
+    margin: 0 auto 15px auto;
 }
-
 .ponto-trilha-menu:hover {
     background-color: #22c55e;
     color: white;
@@ -68,28 +60,25 @@ footer {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.ponto-trilha-menu i {
-    font-weight: normal;
-    font-style: italic;
-    display: block;
-    margin-top: 4px;
-    color: #555;
-}
-
-.ponto-trilha-menu:hover i {
-    color: white;
-}
-
-
 /* --- PÁGINA DO MAPA (map.html) --- */
+
+/* NOVO: Container para alinhar o mapa e o vídeo lado a lado */
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em telas pequenas */
+    gap: 30px; /* Espaço entre o mapa e o vídeo */
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .map-container {
     position: relative;
-    width: 100%;
-    max-width: 700px; /* Tamanho do mapa reduzido */
-    margin: 30px auto;
+    flex: 1; /* Permite que o container cresça */
+    min-width: 350px; /* Largura mínima */
+    max-width: 600px; /* Mapa um pouco menor */
     border: 3px solid #166534;
     border-radius: 10px;
-    overflow: hidden; /* Garante que nada saia do container */
+    overflow: hidden;
 }
 
 .map-container img {
@@ -104,49 +93,42 @@ footer {
     background-color: #22c55e;
     color: white;
     border: 2px solid white;
-    border-radius: 50%; /* Checkpoint redondo */
+    border-radius: 50%;
     font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.4);
     transition: all 0.2s ease;
-    transform: translate(-50%, -50%); /* Centraliza o pino na coordenada exata */
+    transform: translate(-50%, -50%);
 }
 
 .checkpoint:hover {
     transform: translate(-50%, -50%) scale(1.15);
-    background-color: #10B981;
 }
 
 #avatar-container {
-    min-height: 300px;
+    flex: 1; /* Permite que o container cresça */
+    min-width: 350px;
+    max-width: 450px;
+    min-height: 250px; /* Altura mínima ajustada */
     border: 2px dashed #86efac;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f0fff0;
-    margin: 20px auto 0;
     padding: 10px;
-    max-width: 700px; /* Largura igual a do mapa */
 }
 
 #libras-video {
    max-width: 100%;
-   max-height: 100%;
    border-radius: 5px;
 }
 
-
-/* --- ELEMENTOS COMUNS (botão 'Sobre o Projeto') --- */
-.readme-container {
-    margin-top: 40px;
-}
-
-.readme-button {
+/* Botão de voltar */
+.back-button {
+    display: inline-block;
+    margin-top: 30px;
     text-decoration: none;
     background-color: #6c757d;
     color: white;
@@ -155,6 +137,6 @@ footer {
     transition: background-color 0.2s;
 }
 
-.readme-button:hover {
+.back-button:hover {
     background-color: #5a6268;
 }
