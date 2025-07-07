@@ -1,50 +1,47 @@
-// Aguarda o DOM (a estrutura da página) ser completamente carregado
+// O evento 'DOMContentLoaded' espera todo o HTML ser carregado antes de executar o script.
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Seleciona os elementos da página
     const botoes = document.querySelectorAll('.ponto-trilha');
-    const avatarPlaceholder = document.getElementById('avatar-placeholder');
     const errorMessage = document.getElementById('error-message');
 
     // Função que será chamada quando um botão for clicado
-    function handleButtonClick(event) {
-        const botao = event.currentTarget;
-        const textoParaTraduzir = botao.dataset.text;
+    function handleTranslateClick(event) {
+        // Pega o texto do atributo 'data-text' do botão que foi clicado
+        const textoParaTraduzir = event.currentTarget.dataset.text;
 
-        // Verifica se o widget do VLibras está disponível
+        // Verifica se o widget do VLibras realmente está disponível antes de usar
         if (window.VLibras && window.VLibras.widget) {
             window.VLibras.widget.translate(textoParaTraduzir);
         } else {
-            console.error('O widget do VLibras não está pronto ou falhou ao carregar.');
-            // Se o widget não funcionar, não faz nada (a mensagem de erro global já estará visível)
+            // Este alerta só apareceria se algo muito estranho acontecesse
+            alert("O tradutor de LIBRAS parou de funcionar. Por favor, recarregue a página.");
         }
     }
 
-    // Função para verificar se o Widget do VLibras carregou
-    function verificarWidgetVLibras() {
+    // Função para verificar repetidamente se o Widget do VLibras carregou
+    function checkWidget(attemptsLeft) {
+        // Se o widget carregou, ótimo! Adicionamos a função de clique aos botões.
         if (window.VLibras && window.VLibras.widget) {
-            // Sucesso! O widget carregou.
-            console.log('Widget do VLibras carregado com sucesso.');
-            if (avatarPlaceholder) {
-                avatarPlaceholder.textContent = 'Selecione um item acima para traduzir.';
-            }
-            // Adiciona o evento de clique a cada botão
+            console.log("Widget do VLibras carregado com sucesso. Botões ativados.");
             botoes.forEach(botao => {
-                botao.addEventListener('click', handleButtonClick);
+                botao.addEventListener('click', handleTranslateClick);
             });
-        } else {
-            // Falha! Mostra a mensagem de erro e esconde o placeholder
-            console.error('Falha ao carregar o widget do VLibras.');
-            if (errorMessage) {
-                errorMessage.style.display = 'block';
-            }
-            if (avatarPlaceholder) {
-                avatarPlaceholder.style.display = 'none';
-            }
+            return; // Para de verificar
         }
+
+        // Se tentamos 10 vezes (por 5 segundos) e não carregou, desistimos.
+        if (attemptsLeft <= 0) {
+            console.error("Falha ao carregar o widget do VLibras após várias tentativas.");
+            if (errorMessage) {
+                errorMessage.style.display = 'block'; // Mostra a mensagem de erro na página
+            }
+            return;
+        }
+
+        // Se ainda não carregou, espera meio segundo e tenta de novo.
+        setTimeout(() => checkWidget(attemptsLeft - 1), 500);
     }
 
-    // Tenta verificar o widget após um pequeno atraso (2 segundos) para dar tempo de carregar
-    setTimeout(verificarWidgetVLibras, 2000);
-
+    // Inicia a verificação do widget, tentando 10 vezes.
+    checkWidget(10);
 });
