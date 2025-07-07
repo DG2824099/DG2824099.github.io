@@ -10,22 +10,17 @@
     <div class="main-container">
         <header>
             <h1>Trilha Ecológica Acessível em LIBRAS</h1>
-            <p>Material didático para educação inclusiva e acessibilidade em trilhas ecológicas.</p>
+            <p>Material didático - Educação inclusiva e acessibilidade em trilhas ecológicas.</p>
         </header>
         <main>
             <div class="botoes-container">
-                <button class="ponto-trilha" 
-                        data-text="O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.">
-                    1. Guapuruvu <i>(Schizolobium parahyba)</i>
-                </button>
-                <button class="ponto-trilha"
-                        data-text="O solo da Mata Atlântica é geralmente profundo, argiloso e rico em matéria orgânica. Essa camada de folhas em decomposição, chamada de serrapilheira, é fundamental para a fertilidade.">
-                    2. Solo da Mata Atlântica
-                </button>
+                <button class="ponto-trilha" onclick="tocarVideo('videos/guapuruvu.mp4')">1. Guapuruvu <i>(Schizolobium parahyba)</i></button>
+                <button class="ponto-trilha" onclick="tocarVideo('videos/solo.mp4')">2. Solo da Mata Atlântica</button>
             </div>
 
-            <div id="info-container">
-                <p>Clique em um item acima. A tradução em LIBRAS abrirá em uma nova aba.</p>
+            <div id="avatar-container">
+                <p id="video-placeholder">Selecione uma opção acima para exibir o vídeo.</p>
+                <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
             </div>
 
             <div class="readme-container">
