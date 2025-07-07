@@ -1,38 +1,14 @@
-// --- VERSÃO FINAL E ESTÁVEL: ABRIR PLAYER EM NOVA ABA ---
+const videoPlayer = document.getElementById('libras-video');
+const videoPlaceholder = document.getElementById('video-placeholder');
 
-// O evento 'DOMContentLoaded' espera todo o HTML ser carregado antes de executar o script.
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Seleciona todos os botões com a classe '.ponto-trilha'
-    const buttons = document.querySelectorAll('.ponto-trilha');
-
-    // Função que será chamada quando um botão for clicado
-    const handleTranslationClick = (event) => {
-        // Pega o texto do atributo 'data-text' do botão que foi clicado
-        const textToTranslate = event.currentTarget.dataset.text;
-
-        // Verifica se o texto existe antes de prosseguir
-        if (textToTranslate) {
-            // Codifica o texto para que ele possa ser usado em uma URL
-            const encodedText = encodeURIComponent(textToTranslate);
-            
-            // NOVO ENDEREÇO CORRETO DO PLAYER
-            const vlibrasPlayerUrl = `https://suite.vlibras.gov.br/player?text=${encodedText}`;
-            
-            // Abre a URL em uma nova aba do navegador
-            const newWindow = window.open(vlibrasPlayerUrl, '_blank');
-
-            // Adiciona uma verificação para o caso de o navegador bloquear o pop-up
-            if (!newWindow) {
-                alert("O seu navegador bloqueou a abertura da janela. Por favor, permita pop-ups para este site e tente novamente.");
-            }
-        } else {
-            console.error("O botão clicado não possui texto no atributo 'data-text'.");
-        }
-    };
-
-    // Adiciona o 'escutador' de clique a cada um dos botões encontrados na página
-    buttons.forEach(button => {
-        button.addEventListener('click', handleTranslationClick);
-    });
-});
+function tocarVideo(caminhoDoVideo) {
+  if (videoPlayer && videoPlaceholder) {
+    // Esconde o texto e mostra o player de vídeo
+    videoPlaceholder.style.display = 'none';
+    videoPlayer.style.display = 'block';
+    
+    // Define o caminho e toca o vídeo
+    videoPlayer.src = caminhoDoVideo;
+    videoPlayer.play();
+  }
+}
