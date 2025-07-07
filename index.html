@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo Trilha Ecológica</title>
+    <title>Protótipo Trilha Ecológica com VLibras</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,8 +20,8 @@
             <p>Material didático para educação inclusiva e acessibilidade em trilhas ecológicas.</p>
         </header>
         <main>
-            <div id="error-message" style="display: none; background-color: #fecaca; color: #991b1b; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <strong>Oh, shit...</strong> O tradutor de LIBRAS tá de chapéu. Tenta recarregar a página, mate.
+            <div id="error-message" style="display: none; background-color: #fef2f2; color: #991b1b; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <strong>Atenção:</strong> O tradutor de LIBRAS não pôde ser carregado. O serviço pode estar temporariamente indisponível.
             </div>
 
             <div class="botoes-container">
@@ -44,7 +44,7 @@
         </footer>
     </div>
     
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@main/app/vlibras-plugin.js"></script>
     <script>
       new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
