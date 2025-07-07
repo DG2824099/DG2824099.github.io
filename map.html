@@ -3,37 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo Trilha Ecológica</title>
+    <title>Mapa Interativo - Trilha Ecológica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main-container">
         <header>
-            <h1>Trilha Ecológica Acessível em LIBRAS</h1>
-            <p>Material didático - Educação inclusiva e acessibilidade em trilhas ecológicas.</p>
+            <h1>Mapa Interativo da Trilha</h1>
+            <p>Clique em um checkpoint para ver a tradução em LIBRAS.</p>
         </header>
         <main>
-           <div class="map-container">
-    <img src="mapa.interativo.png" alt="Mapa da Trilha Ecológica">
+            <div class="map-container">
+                <img src="mapa-trilha.jpg" alt="Mapa da Trilha Ecológica">
 
-    <button class="checkpoint" style="top: 25%; left: 30%;" onclick="tocarVideo('guapuruvu.mp4.mp4')">1</button>
-    <button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('solo.mp4.mp4')">2</button>
-    <button class="checkpoint" style="top: 72.33%; left: 39.89%;" onclick="tocarVideo('solo.mp4.mp4')">3</button>
-<button class="checkpoint" style= "top: 71.16%; left: 62.98%;" onclick="tocarVideo('solo.mp4.mp4')">4</button>
-<button class="checkpoint" style="top: 43.90%; left: 73.09%;" onclick="tocarVideo('solo.mp4.mp4')">5</button>
-<button class="checkpoint" style="top: 44.46%; left: 55.28%;" onclick="tocarVideo('solo.mp4.mp4')">6</button>
-<button class="checkpoint" style="top: 44.90%; left: 39.59%;" onclick="tocarVideo('solo.mp4.mp4')">7</button>
-<button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('solo.mp4.mp4')">8</button>
-</div>
-
-<div id="avatar-container">
-    <p id="video-placeholder">Selecione um checkpoint no mapa para exibir o vídeo.</p>
-    <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
+                <button class="checkpoint" style="top: 25%; left: 30%;" onclick="tocarVideo('guapuruvu.mp4')">1</button>
+                <button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('solo.mp4')">2</button>
+                <button class="checkpoint" style="top: 72.33%; left: 39.89%;" onclick="tocarVideo('ponto_3.mp4')">3</button>
+                <button class="checkpoint" style="top: 71.16%; left: 62.98%;" onclick="tocarVideo('ponto_4.mp4')">4</button>
+                <button class="checkpoint" style="top: 43.90%; left: 73.09%;" onclick="tocarVideo('ponto_5.mp4')">5</button>
+                <button class="checkpoint" style="top: 44.46%; left: 55.28%;" onclick="tocarVideo('ponto_6.mp4')">6</button>
+                <button class="checkpoint" style="top: 44.90%; left: 39.59%;" onclick="tocarVideo('ponto_7.mp4')">7</button>
+                <button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('ponto_8.mp4')">8</button>
             </div>
 
-            <div class="readme-container">
-                <a href="sobre-o-projeto.pdf" target="_blank" class="readme-button">Sobre o Projeto</a>
+            <div id="avatar-container">
+                <p id="video-placeholder">Selecione um checkpoint no mapa para exibir o vídeo.</p>
+                <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
             </div>
+
+            <a href="index.html" class="back-button">Voltar ao Início</a>
         </main>
         <footer>
             <p>&copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>

@@ -1,33 +1,39 @@
 /* --- ESTILOS GERAIS --- */
 body {
-    /* Garante que o fundo seja aplicado em todas as páginas */
-    background-image: url('fundo-mata.png');
+    /* Gradiente mais escuro e imagem de fundo. Garanta que 'fundo-mata.png' está na raiz. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('fundo-mata.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     font-family: sans-serif;
     margin: 0;
     padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 }
 
 .main-container {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(240, 253, 244, 0.95); /* Verde muito claro, quase branco, com transparência */
     padding: 30px 40px;
     border-radius: 15px;
     text-align: center;
     width: 90%;
-    max-width: 1200px; /* Aumentado para acomodar o layout lado a lado */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    border: 1px solid #ccc;
+    max-width: 900px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    border: 1px solid #a3a3a3;
+    margin: 20px auto;
 }
 
 header {
     margin-bottom: 30px;
-    color: #14532d;
+    color: #064e3b; /* Verde escuro para o texto */
+}
+
+header h1 {
+    font-size: 2.2em;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1.1em;
 }
 
 footer {
@@ -36,47 +42,54 @@ footer {
     font-size: 0.9em;
 }
 
-/* --- PÁGINA PRINCIPAL (index.html) --- */
+/* --- ESTILOS DOS BOTÕES (para ambas as páginas) --- */
+.ponto-trilha-menu, .checkpoint {
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid black;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: left;
+}
+
+.ponto-trilha-menu:hover, .checkpoint:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Estilo para os botões da página principal */
 .ponto-trilha-menu {
     display: block;
     padding: 18px 30px;
-    font-size: 1.1em;
-    cursor: pointer;
     background-color: white;
     color: #166534;
-    border-radius: 8px;
-    transition: all 0.2s;
-    border: 2px solid black;
     width: 100%;
     max-width: 550px;
-    text-align: left;
     text-decoration: none;
     margin: 0 auto 15px auto;
+}
+.ponto-trilha-menu i {
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+    color: #555;
+    font-weight: normal;
+}
+.ponto-trilha-menu:hover i {
+    color: white;
 }
 .ponto-trilha-menu:hover {
     background-color: #22c55e;
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* --- PÁGINA DO MAPA (map.html) --- */
-
-/* NOVO: Container para alinhar o mapa e o vídeo lado a lado */
-.content-wrapper {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a linha de baixo em telas pequenas */
-    gap: 30px; /* Espaço entre o mapa e o vídeo */
-    justify-content: center;
-    align-items: flex-start;
-}
-
+/* Estilo para os checkpoints na página do mapa */
 .map-container {
     position: relative;
-    flex: 1; /* Permite que o container cresça */
-    min-width: 350px; /* Largura mínima */
-    max-width: 600px; /* Mapa um pouco menor */
-    border: 3px solid #166534;
+    max-width: 700px;
+    margin: 30px auto;
+    border: 3px solid #064e3b;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -90,34 +103,31 @@ footer {
     position: absolute;
     width: 40px;
     height: 40px;
-    background-color: #22c55e;
+    background-color: #10B981;
     color: white;
     border: 2px solid white;
     border-radius: 50%;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-    transition: all 0.2s ease;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     transform: translate(-50%, -50%);
 }
 
 .checkpoint:hover {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 #avatar-container {
-    flex: 1; /* Permite que o container cresça */
-    min-width: 350px;
-    max-width: 450px;
-    min-height: 250px; /* Altura mínima ajustada */
+    min-height: 300px;
     border: 2px dashed #86efac;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f0fff0;
+    margin: 20px auto 0;
     padding: 10px;
+    max-width: 700px;
 }
 
 #libras-video {
@@ -125,18 +135,18 @@ footer {
    border-radius: 5px;
 }
 
-/* Botão de voltar */
-.back-button {
+/* --- ELEMENTOS COMUNS --- */
+.back-button, .readme-button {
     display: inline-block;
     margin-top: 30px;
     text-decoration: none;
-    background-color: #6c757d;
+    background-color: #4b5563;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.2s;
 }
 
-.back-button:hover {
-    background-color: #5a6268;
+.back-button:hover, .readme-button:hover {
+    background-color: #374151;
 }
