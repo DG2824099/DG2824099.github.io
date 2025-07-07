@@ -3,27 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo Trilha Ecológica com VLibras</title>
+    <title>Protótipo Trilha Ecológica</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-
     <div class="main-container">
         <header>
             <h1>Trilha Ecológica Acessível em LIBRAS</h1>
             <p>Material didático para educação inclusiva e acessibilidade em trilhas ecológicas.</p>
         </header>
         <main>
-            <div id="error-message" style="display: none; background-color: #fef2f2; color: #991b1b; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <strong>Atenção:</strong> O tradutor de LIBRAS não pôde ser carregado. O serviço pode estar temporariamente indisponível.
-            </div>
-
             <div class="botoes-container">
                 <button class="ponto-trilha" 
                         data-text="O Guapuruvu, de nome científico Schizolobium parahyba, é uma árvore pioneira, nativa da Mata Atlântica. Ela cresce muito rápido, podendo atingir 5 metros de altura em apenas 2 anos.">
@@ -35,6 +24,10 @@
                 </button>
             </div>
 
+            <div id="info-container">
+                <p>Clique em um item acima. A tradução em LIBRAS abrirá em uma nova aba.</p>
+            </div>
+
             <div class="readme-container">
                 <a href="sobre-o-projeto.pdf" target="_blank" class="readme-button">Sobre o Projeto</a>
             </div>
@@ -43,12 +36,6 @@
             <p>&copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>
         </footer>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@main/app/vlibras-plugin.js"></script>
-    <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>
-    
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
