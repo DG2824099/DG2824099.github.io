@@ -13,14 +13,16 @@
             <p>Material didático - Educação inclusiva e acessibilidade em trilhas ecológicas.</p>
         </header>
         <main>
-            <div class="botoes-container">
-                <button class="ponto-trilha" onclick="tocarVideo('guapuruvu.mp4.mp4')">1. Guapuruvu <i>(Schizolobium parahyba)</i></button>
-                <button class="ponto-trilha" onclick="tocarVideo('solo.mp4.mp4')">2. Solo da Mata Atlântica</button>
-            </div>
+           <div class="map-container">
+    <img src="mapa-trilha.jpg" alt="Mapa da Trilha Ecológica">
 
-            <div id="avatar-container">
-                <p id="video-placeholder">Selecione uma opção acima para exibir o vídeo.</p>
-                <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
+    <button class="checkpoint" style="top: 25%; left: 30%;" onclick="tocarVideo('videos/guapuruvu.mp4')">1</button>
+    <button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('videos/solo.mp4')">2</button>
+    </div>
+
+<div id="avatar-container">
+    <p id="video-placeholder">Selecione um checkpoint no mapa para exibir o vídeo.</p>
+    <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
             </div>
 
             <div class="readme-container">
