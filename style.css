@@ -1,7 +1,6 @@
 /* --- ESTILOS GERAIS --- */
 body {
-    /* Gradiente mais escuro e imagem de fundo. Garanta que 'fundo-mata.png' está na raiz. */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('fundo-mata.png');
+    background-image: url('fundo-mata.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -11,30 +10,23 @@ body {
 }
 
 .main-container {
-    background-color: rgba(240, 253, 244, 0.95); /* Verde muito claro, quase branco, com transparência */
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 30px 40px;
     border-radius: 15px;
     text-align: center;
     width: 90%;
     max-width: 900px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    border: 1px solid #a3a3a3;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    border: 1px solid #ccc;
     margin: 20px auto;
 }
 
 header {
     margin-bottom: 30px;
-    color: #064e3b; /* Verde escuro para o texto */
+    color: #14532d;
 }
 
-header h1 {
-    font-size: 2.2em;
-    font-weight: bold;
-}
-
-header p {
-    font-size: 1.1em;
-}
+header h1 { font-size: 2em; }
 
 footer {
     margin-top: 40px;
@@ -42,54 +34,12 @@ footer {
     font-size: 0.9em;
 }
 
-/* --- ESTILOS DOS BOTÕES (para ambas as páginas) --- */
-.ponto-trilha-menu, .checkpoint {
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.2s ease-in-out;
-    border: 2px solid black;
-    font-size: 1.1em;
-    font-weight: bold;
-    text-align: left;
-}
-
-.ponto-trilha-menu:hover, .checkpoint:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* Estilo para os botões da página principal */
-.ponto-trilha-menu {
-    display: block;
-    padding: 18px 30px;
-    background-color: white;
-    color: #166534;
-    width: 100%;
-    max-width: 550px;
-    text-decoration: none;
-    margin: 0 auto 15px auto;
-}
-.ponto-trilha-menu i {
-    font-style: italic;
-    display: block;
-    margin-top: 4px;
-    color: #555;
-    font-weight: normal;
-}
-.ponto-trilha-menu:hover i {
-    color: white;
-}
-.ponto-trilha-menu:hover {
-    background-color: #22c55e;
-    color: white;
-}
-
-/* Estilo para os checkpoints na página do mapa */
+/* --- ESTILOS DA PÁGINA DO MAPA --- */
 .map-container {
     position: relative;
     max-width: 700px;
     margin: 30px auto;
-    border: 3px solid #064e3b;
+    border: 3px solid #166534;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -103,22 +53,27 @@ footer {
     position: absolute;
     width: 40px;
     height: 40px;
-    background-color: #10B981;
+    background-color: #22c55e;
     color: white;
     border: 2px solid white;
     border-radius: 50%;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
     transform: translate(-50%, -50%);
 }
 
 .checkpoint:hover {
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.15);
 }
 
 #avatar-container {
-    min-height: 300px;
+    min-height: 250px; /* Altura ajustada para o novo tamanho do vídeo */
     border: 2px dashed #86efac;
     border-radius: 8px;
     display: flex;
@@ -130,23 +85,25 @@ footer {
     max-width: 700px;
 }
 
+/* Estilo para o vídeo, respeitando o width definido no HTML mas garantindo responsividade */
 #libras-video {
    max-width: 100%;
+   height: auto;
    border-radius: 5px;
 }
 
 /* --- ELEMENTOS COMUNS --- */
-.back-button, .readme-button {
+.back-button {
     display: inline-block;
     margin-top: 30px;
     text-decoration: none;
-    background-color: #4b5563;
+    background-color: #6c757d;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.2s;
 }
 
-.back-button:hover, .readme-button:hover {
-    background-color: #374151;
+.back-button:hover {
+    background-color: #5a6268;
 }
