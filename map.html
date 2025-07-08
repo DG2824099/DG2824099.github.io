@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Interativo - Trilha Ecológica</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="main-container">
@@ -15,26 +16,33 @@
         <main>
             <div class="map-container">
                 <img src="mapa.interativo.png" alt="Mapa da Trilha Ecológica">
-
-                <button class="checkpoint" style="top: 25%; left: 30%;" onclick="tocarVideo('guapuruvu.mp4')">1</button>
-                <button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('solo.mp4')">2</button>
-                <button class="checkpoint" style="top: 72.33%; left: 39.89%;" onclick="tocarVideo('ponto_3.mp4')">3</button>
-                <button class="checkpoint" style="top: 71.16%; left: 62.98%;" onclick="tocarVideo('ponto_4.mp4')">4</button>
-                <button class="checkpoint" style="top: 43.90%; left: 73.09%;" onclick="tocarVideo('ponto_5.mp4')">5</button>
-                <button class="checkpoint" style="top: 44.46%; left: 55.28%;" onclick="tocarVideo('ponto_6.mp4')">6</button>
-                <button class="checkpoint" style="top: 44.90%; left: 39.59%;" onclick="tocarVideo('ponto_7.mp4')">7</button>
-                <button class="checkpoint" style="top: 55%; left: 65%;" onclick="tocarVideo('ponto_8.mp4')">8</button>
+                <div class="checkpoint" style="top: 86.5%; left: 16%;">
+                    <span>2</span>
+                    <div class="info-box">
+                        Guapuruvu
+                        <a href="https://pt.wikipedia.org/wiki/Schizolobium_parahyba" target="_blank" class="info-link" title="Saiba mais sobre o Guapuruvu">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="checkpoint" style="top: 88%; left: 32%;">
+                    <span>3</span>
+                    <div class="info-box">
+                        Sapucaia
+                        <a href="https://pt.wikipedia.org/wiki/Lecythis_pisonis" target="_blank" class="info-link" title="Saiba mais sobre a Sapucaia">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            <div id="video-box">
+                <p id="video-placeholder">Selecione um checkpoint para exibir o vídeo.</p>
+                <video id="libras-video" width="400" controls autoplay muted style="display:none;"></video>
             </div>
-
-            <div id="avatar-container">
-                <p id="video-placeholder">Selecione um checkpoint no mapa para exibir o vídeo.</p>
-                <video id="libras-video" width="200" controls autoplay muted style="display:none;"></video>
-            </div>
-
             <a href="index.html" class="back-button">Voltar ao Início</a>
         </main>
         <footer>
-            <p> &copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>
+            <p>&copy; 2024 - Projeto Trilha Ecológica. Todos os direitos reservados.</p>
         </footer>
     </div>
     <script src="script.js"></script>

@@ -1,6 +1,6 @@
 /* --- ESTILOS GERAIS --- */
 body {
-    background-image: url('fundo-mata.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('fundo-mata.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -8,102 +8,92 @@ body {
     margin: 0;
     padding: 20px;
 }
-
 .main-container {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(240, 253, 244, 0.95);
     padding: 30px 40px;
     border-radius: 15px;
     text-align: center;
     width: 90%;
     max-width: 900px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    border: 1px solid #ccc;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    border: 1px solid #a3a3a3;
     margin: 20px auto;
 }
-
-header {
-    margin-bottom: 30px;
-    color: #14532d;
+header h1 {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #064e3b; /* Título em verde escuro */
 }
-
-header h1 { font-size: 2em; }
-
 footer {
     margin-top: 40px;
     color: #4b5563;
     font-size: 0.9em;
 }
 
-/* --- ESTILOS DA PÁGINA DO MAPA --- */
-.map-container {
-    position: relative;
-    max-width: 700px;
-    margin: 30px auto;
-    border: 3px solid #166534;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.map-container img {
-    width: 100%;
-    display: block;
-}
-
-.checkpoint {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: #22c55e;
-    color: white;
-    border: 2px solid white;
-    border-radius: 50%;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
+/* --- PÁGINA PRINCIPAL --- */
+.menu-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-    transition: all 0.2s ease;
+}
+.menu-button {
+    display: block; padding: 18px 30px; font-size: 1.1em;
+    cursor: pointer; background-color: white; color: #166534;
+    border-radius: 8px; transition: all 0.2s; border: 2px solid black;
+    width: 100%; max-width: 550px; text-align: left; text-decoration: none;
+}
+.menu-button:hover {
+    background-color: #22c55e; color: white; transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.menu-button i {
+    font-style: italic; display: block; margin-top: 4px; color: #555;
+}
+
+/* --- PÁGINA DO MAPA --- */
+.map-container {
+    position: relative; max-width: 700px; margin: 30px auto;
+    border: 3px solid #064e3b; border-radius: 10px; overflow: hidden;
+}
+.map-container img {
+    width: 100%; display: block;
+}
+.checkpoint {
+    position: absolute; width: 30px; height: 30px;
+    background-color: #d9f99d; color: #1a2e05; border: 2px solid #1a2e05;
+    border-radius: 50%; font-size: 1em; font-weight: bold;
+    cursor: pointer; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); transition: all 0.2s ease;
     transform: translate(-50%, -50%);
 }
-
 .checkpoint:hover {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 10; /* Garante que o hover fique por cima */
 }
-
-#avatar-container {
-    min-height: 250px; /* Altura ajustada para o novo tamanho do vídeo */
-    border: 2px dashed #86efac;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0fff0;
-    margin: 20px auto 0;
-    padding: 10px;
+.info-box {
+    visibility: hidden; opacity: 0; position: absolute; bottom: 120%; left: 50%;
+    transform: translateX(-50%); background-color: #1a2e05; color: white;
+    padding: 8px 12px; border-radius: 6px; font-size: 0.9em;
+    white-space: nowrap; transition: all 0.2s;
+}
+.checkpoint:hover .info-box {
+    visibility: visible; opacity: 1;
+}
+.info-link {
+    color: #a7f3d0; margin-left: 8px; text-decoration: none;
+}
+#video-box {
+    min-height: 300px; border: 2px dashed #86efac; border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    background-color: #f0fff0; margin: 20px auto 0; padding: 10px;
     max-width: 700px;
 }
-
-/* Estilo para o vídeo, respeitando o width definido no HTML mas garantindo responsividade */
 #libras-video {
-   max-width: 100%;
-   height: auto;
-   border-radius: 5px;
+   max-width: 100%; border-radius: 5px;
 }
-
-/* --- ELEMENTOS COMUNS --- */
 .back-button {
-    display: inline-block;
-    margin-top: 30px;
-    text-decoration: none;
-    background-color: #6c757d;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-}
-
-.back-button:hover {
-    background-color: #5a6268;
+    display: inline-block; margin-top: 30px; text-decoration: none;
+    background-color: #6c757d; color: white; padding: 10px 20px;
+    border-radius: 5px; transition: background-color 0.2s;
 }
