@@ -1,4 +1,33 @@
-/* ... (todos os seus estilos gerais e de header) ... */
+/* --- ESTILOS GERAIS --- */
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('fundo-mata.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+.main-container {
+    background-color: rgba(36, 62, 44, 0.95);
+    color: #f0fdf4;
+    padding: 30px 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    border: 1px solid #a3a3a3;
+    margin: 20px auto;
+}
+header h1 {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+header p {
+    color: #d1d5db;
+}
 
 /* --- PÁGINA DO MAPA --- */
 .map-container {
@@ -15,11 +44,7 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.5); transition: all 0.2s ease;
     transform: translate(-50%, -50%);
 }
-/* Garante que o número dentro do checkpoint fique centralizado */
-.checkpoint span {
-    line-height: 1;
-}
-
+.checkpoint span { line-height: 1; }
 .checkpoint:hover {
     transform: translate(-50%, -50%) scale(1.2);
     z-index: 10;
@@ -31,5 +56,22 @@
     white-space: nowrap; transition: all 0.2s;
 }
 .checkpoint:hover .info-box { visibility: visible; opacity: 1; }
+.info-link { color: #a7f3d0; margin-left: 8px; text-decoration: none; }
+.checkpoint-active {
+    background-color: #facc15; color: #422006;
+    border-color: white; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(250, 204, 21, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
+}
+#video-box {
+    min-height: 300px; border: 2px dashed #6ee7b7; border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    background-color: #064e3b; margin: 20px auto 0; padding: 10px;
+    max-width: 700px; color: #d1d5db;
+}
+#libras-video { max-width: 100%; border-radius: 5px; }
 
-/* ... (resto do seu css, como .checkpoint-active, #video-box, etc.) ... */
+/* ... (O resto do seu CSS para .menu-button, .back-button, etc. continua aqui) ... */
