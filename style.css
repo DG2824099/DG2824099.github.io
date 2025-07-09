@@ -120,8 +120,8 @@ footer {
     opacity: 0;
 
     /* Estilo da "bolha de texto" */
-    background-color: #4b3a7e; /* Amarelo ouro, para combinar com o pulso */
-    color: #422006; /* Marrom escuro para o texto */
+    background-color: #000000; /* Amarelo ouro, para combinar com o pulso */
+    color: #ffffff; /* Marrom escuro para o texto */
     text-align: center;
     border-radius: 6px;
     padding: 8px 12px;
@@ -147,7 +147,7 @@ footer {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #38118d transparent transparent transparent;
+    border-color: #000000 transparent transparent transparent;
 }
 
 /* Regra MÁGICA: Mostra a etiqueta QUANDO o checkpoint tiver a classe .checkpoint-active */
