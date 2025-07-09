@@ -9,15 +9,15 @@ body {
     padding: 20px;
 }
 .main-container {
-    background-color: rgba(240, 253, 244, 0.95); /* Fundo verde bem claro */
-    color: #064e3b; /* Texto principal verde escuro */
+    background-color: rgba(24, 79, 128, 0.95); /* Fundo verde bem claro */
+    color: #ffffff; /* Texto principal verde escuro */
     padding: 30px 40px;
     border-radius: 15px;
     text-align: center;
     width: 90%;
     max-width: 900px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    border: 1px solid #a3a3a3;
+    border: 1px solid #340b45;
     margin: 20px auto;
 }
 header h1 {
@@ -101,7 +101,7 @@ footer {
     display: inline-block;
     margin-top: 30px;
     text-decoration: none;
-    background-color: #6c757d;
+    background-color: #21236e;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -109,6 +109,49 @@ footer {
     transition: background-color 0.2s, transform 0.2s;
 }
 .readme-button:hover, .back-button:hover {
-    background-color: #5a6268;
+    background-color: #5cb73d;
     transform: translateY(-2px);
+}
+/* --- ESTILO PARA A ETIQUETA "VOCÊ ESTÁ AQUI" --- */
+
+.you-are-here-label {
+    /* Escondido por padrão */
+    visibility: hidden;
+    opacity: 0;
+
+    /* Estilo da "bolha de texto" */
+    background-color: #4b3a7e; /* Amarelo ouro, para combinar com o pulso */
+    color: #422006; /* Marrom escuro para o texto */
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap; /* Impede a quebra de linha */
+    
+    /* Posicionamento acima do checkpoint */
+    position: absolute;
+    z-index: 15; /* Garante que fique acima de tudo */
+    bottom: 150%; /* Posição acima do info-box */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.2s ease;
+}
+
+/* Efeito de "flecha" para a bolha de texto */
+.you-are-here-label::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #38118d transparent transparent transparent;
+}
+
+/* Regra MÁGICA: Mostra a etiqueta QUANDO o checkpoint tiver a classe .checkpoint-active */
+.checkpoint-active .you-are-here-label {
+    visibility: visible;
+    opacity: 1;
 }
