@@ -150,8 +150,8 @@ footer {
     border-color: #000000 transparent transparent transparent;
 }
 
-/* Regra MÁGICA: Mostra a etiqueta QUANDO o checkpoint tiver a classe .checkpoint-active */
-.checkpoint-active .you-are-here-label {
+/* Mostra a etiqueta apenas quando a classe .show-label está presente no checkpoint */
+.checkpoint.show-label .you-are-here-label {
     visibility: visible;
     opacity: 1;
 }
