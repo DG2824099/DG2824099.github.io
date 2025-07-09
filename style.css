@@ -9,8 +9,8 @@ body {
     padding: 20px;
 }
 .main-container {
-    background-color: rgba(36, 62, 44, 0.95);
-    color: #f0fdf4;
+    background-color: rgba(240, 253, 244, 0.95); /* Fundo verde bem claro */
+    color: #064e3b; /* Texto principal verde escuro */
     padding: 30px 40px;
     border-radius: 15px;
     text-align: center;
@@ -23,19 +23,42 @@ body {
 header h1 {
     font-size: 2.2em;
     font-weight: bold;
-    color: #ffffff;
+    color: #064e3b;
 }
 header p {
-    color: #d1d5db;
+    color: #1f2937;
+}
+footer {
+    margin-top: 40px;
+    color: #4b5563;
+    font-size: 0.9em;
 }
 
-/* --- PÁGINA DO MAPA --- */
+/* --- PÁGINA PRINCIPAL (index.html) --- */
+.menu-button {
+    display: block; padding: 18px 30px; font-size: 1.1em;
+    cursor: pointer; background-color: white; color: #166534;
+    border-radius: 8px; transition: all 0.2s; border: 2px solid black;
+    width: 100%; max-width: 550px; text-align: left; text-decoration: none;
+    margin: 0 auto 15px auto;
+}
+.menu-button:hover {
+    background-color: #22c55e; color: white; transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.menu-button i {
+    font-style: italic; display: block; margin-top: 4px; color: #555;
+}
+.menu-button:hover i {
+    color: white;
+}
+
+/* --- PÁGINA DO MAPA (map.html) --- */
 .map-container {
     position: relative; max-width: 700px; margin: 30px auto;
-    border: 3px solid #6ee7b7; border-radius: 10px; overflow: hidden;
+    border: 3px solid #064e3b; border-radius: 10px; overflow: hidden;
 }
 .map-container img { width: 100%; display: block; }
-
 .checkpoint {
     position: absolute; width: 30px; height: 30px;
     background-color: #d9f99d; color: #1a2e05; border: 2px solid #1a2e05;
@@ -44,7 +67,6 @@ header p {
     box-shadow: 0 2px 5px rgba(0,0,0,0.5); transition: all 0.2s ease;
     transform: translate(-50%, -50%);
 }
-.checkpoint span { line-height: 1; }
 .checkpoint:hover {
     transform: translate(-50%, -50%) scale(1.2);
     z-index: 10;
@@ -58,8 +80,8 @@ header p {
 .checkpoint:hover .info-box { visibility: visible; opacity: 1; }
 .info-link { color: #a7f3d0; margin-left: 8px; text-decoration: none; }
 .checkpoint-active {
-    background-color: #facc15; color: #422006;
-    border-color: white; animation: pulse 2s infinite;
+    background-color: #facc15; color: #422006; border-color: white;
+    animation: pulse 2s infinite;
 }
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); }
@@ -67,11 +89,26 @@ header p {
     100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
 }
 #video-box {
-    min-height: 300px; border: 2px dashed #6ee7b7; border-radius: 8px;
+    min-height: 300px; border: 2px dashed #86efac; border-radius: 8px;
     display: flex; justify-content: center; align-items: center;
-    background-color: #064e3b; margin: 20px auto 0; padding: 10px;
-    max-width: 700px; color: #d1d5db;
+    background-color: #f0fff0; margin: 20px auto 0; padding: 10px;
+    max-width: 700px;
 }
 #libras-video { max-width: 100%; border-radius: 5px; }
 
-/* ... (O resto do seu CSS para .menu-button, .back-button, etc. continua aqui) ... */
+/* --- BOTÕES COMUNS (Sobre o Projeto / Voltar) --- */
+.readme-button, .back-button {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.readme-button:hover, .back-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
