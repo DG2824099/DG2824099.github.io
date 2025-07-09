@@ -60,15 +60,15 @@ header p {
 
 /* Estilo para o checkpoint que está ativo ("Você está aqui") */
 .checkpoint-active {
-    background-color: #facc15; /* Amarelo ouro */
+    background-color: #773577; /* Amarelo ouro */
     color: #422006;
     border-color: white;
-    animation: pulse 2s infinite;
+    animation: pulse 1s infinite;
 }
 
 /* Animação que cria o efeito de pulsação */
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7); }
+    0% { box-shadow: 0 0 0 0 rgba(187, 66, 220, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(250, 204, 21, 0); }
     100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
 }
