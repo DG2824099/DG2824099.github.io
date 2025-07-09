@@ -1,42 +1,56 @@
-// --- VERSÃO FINAL E CORRIGIDA ---
-
-const videoPlayer = document.getElementById('libras-video');
-const videoPlaceholder = document.getElementById('video-placeholder');
-
-// 1. FUNÇÃO PRINCIPAL QUE TOCA O VÍDEO
-function tocarVideo(caminhoDoVideo) {
-  // Garante que o caminho não comece com 'videos/' se não for necessário
-  // (Este código funciona mesmo que você decida voltar a usar a pasta 'videos' no futuro)
-  const finalPath = caminhoDoVideo.startsWith('videos/') ? caminhoDoVideo : caminhoDoVideo;
-
-  if (videoPlayer && videoPlaceholder) {
-    videoPlaceholder.style.display = 'none';
-    videoPlayer.style.display = 'block';
-    videoPlayer.src = finalPath;
-    videoPlayer.play();
-  }
-}
-
-// 2. LÓGICA DE CLIQUE E QR CODE
 document.addEventListener('DOMContentLoaded', () => {
+
+    const videoPlayer = document.getElementById('libras-video');
+    const videoPlaceholder = document.getElementById('video-placeholder');
     const checkpoints = document.querySelectorAll('.checkpoint');
 
+    // Função para destacar o checkpoint ativo
+    function destacarCheckpoint(pontoId) {
+        checkpoints.forEach(cp => cp.classList.remove('checkpoint-active'));
+        const checkpointAtivo = document.querySelector(`.checkpoint[data-ponto="${pontoId}"]`);
+        if (checkpointAtivo) {
+            checkpointAtivo.classList.add('checkpoint-active');
+        }
+    }
+
+    // Função principal que toca o vídeo
+    function tocarVideo(caminhoDoVideo) {
+        if (videoPlayer && videoPlaceholder) {
+            videoPlaceholder.style.display = 'none';
+            videoPlayer.style.display = 'block';
+            videoPlayer.src = caminhoDoVideo;
+            videoPlayer.play();
+        }
+    }
+
+    // Adiciona o evento de clique a cada checkpoint
     checkpoints.forEach(checkpoint => {
         checkpoint.addEventListener('click', function() {
-            // Pega o caminho do vídeo do atributo 'data-video-src'
+            const pontoId = this.dataset.ponto;
             const videoFile = this.dataset.videoSrc;
 
-            if (videoFile) {
-                // Toca o vídeo na página
+            if (pontoId && videoFile) {
+                // Destaca o ponto clicado
+                destacarCheckpoint(pontoId);
+                // Toca o vídeo correspondente
                 tocarVideo(videoFile);
 
                 // Gera e exibe o link direto no console para o QR Code
-                const baseUrl = 'https://dg2824099.github.io/';
-                const videoUrl = `${baseUrl}${videoFile}`;
-                console.log(`Link para o QR Code (${videoFile}): ${videoUrl}`);
-            } else {
-                console.error("Checkpoint não possui o atributo 'data-video-src' com o nome do vídeo.");
+                const baseUrl = window.location.origin + window.location.pathname;
+                const qrCodeUrl = `${baseUrl}?ponto=${pontoId}`;
+                console.log(`Link para QR Code (${pontoId}): ${qrCodeUrl}`);
             }
         });
     });
+
+    // --- LÓGICA DO "VOCÊ ESTÁ AQUI" (QR CODE) ---
+    // Roda assim que a página carrega
+    const params = new URLSearchParams(window.location.search);
+    const pontoInicial = params.get('ponto');
+
+    if (pontoInicial) {
+        const videoInicial = `${pontoInicial}.mp4`; // Assume que o nome do vídeo é o mesmo do ponto
+        destacarCheckpoint(pontoInicial);
+        tocarVideo(videoInicial);
+    }
 });
