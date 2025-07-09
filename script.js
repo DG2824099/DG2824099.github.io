@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkpoints = document.querySelectorAll('.checkpoint');
 
     // Variável para guardar o nosso "cronômetro"
-    let activeCheckpointTimer;
+    
 
     // Função para destacar o checkpoint TEMPORARIAMENTE
     function destacarCheckpoint(pontoId) {
         // Cancela qualquer cronômetro anterior se o usuário clicar rápido em outro ponto
-        clearTimeout(activeCheckpointTimer);
+        
 
         // Remove o destaque de todos os outros pontos imediatamente
         checkpoints.forEach(cp => cp.classList.remove('checkpoint-active'));
@@ -23,9 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             checkpointAtivo.classList.add('checkpoint-active');
 
             // Inicia um novo cronômetro para remover o destaque depois de 5 segundos
-            activeCheckpointTimer = setTimeout(() => {
-                checkpointAtivo.classList.remove('checkpoint-active');
-            }, 5000); // 5000 milissegundos = 5 segundos
+             // 5000 milissegundos = 5 segundos
         }
     }
 
