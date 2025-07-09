@@ -30,27 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
             const videoFile = this.dataset.videoSrc;
 
             if (pontoId && videoFile) {
-                // Destaca o ponto clicado
                 destacarCheckpoint(pontoId);
-                // Toca o vídeo correspondente
                 tocarVideo(videoFile);
 
-                // Gera e exibe o link direto no console para o QR Code
-                const baseUrl = window.location.origin + window.location.pathname;
-                const qrCodeUrl = `${baseUrl}?ponto=${pontoId}`;
+                // Gera o link para o QR Code no console
+                const baseUrl = window.location.origin + window.location.pathname.replace('index.html', '');
+                const qrCodeUrl = `${baseUrl.replace('map.html', '')}map.html?ponto=${pontoId}`;
                 console.log(`Link para QR Code (${pontoId}): ${qrCodeUrl}`);
             }
         });
     });
 
-    // --- LÓGICA DO "VOCÊ ESTÁ AQUI" (QR CODE) ---
-    // Roda assim que a página carrega
+    // Lógica do "Você está aqui" (QR CODE)
     const params = new URLSearchParams(window.location.search);
     const pontoInicial = params.get('ponto');
 
     if (pontoInicial) {
-        const videoInicial = `${pontoInicial}.mp4`; // Assume que o nome do vídeo é o mesmo do ponto
-        destacarCheckpoint(pontoInicial);
-        tocarVideo(videoInicial);
+        const checkpointAtivo = document.querySelector(`.checkpoint[data-ponto="${pontoInicial}"]`);
+        if (checkpointAtivo) {
+            const videoParaTocar = checkpointAtivo.dataset.videoSrc;
+            destacarCheckpoint(pontoInicial);
+            tocarVideo(videoParaTocar);
+        }
     }
 });
